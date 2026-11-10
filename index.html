@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Умный дом | Интеллектуальные технологии для комфорта и безопасности</title>
+    <!-- Google Fonts & modern styling -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f4f7fc;
+            color: #1e2a3e;
+            line-height: 1.4;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* header / nav */
+        .navbar {
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #e2edf2;
+        }
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0f2b3d, #1b7f6e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+        .logo i {
+            color: #1b7f6e;
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            margin-right: 8px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-weight: 500;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #2c4b5c;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .nav-links a:hover {
+            color: #1b7f6e;
+        }
+        .btn-primary {
+            background: #1b7f6e;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        .btn-primary:hover {
+            background: #0f5f52;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(27,127,110,0.25);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #1b7f6e;
+            color: #1b7f6e;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .btn-outline:hover {
+            background: #1b7f6e10;
+        }
+
+        /* hero */
+        .hero {
+            padding: 60px 0 40px;
+            background: linear-gradient(120deg, #eef5f9 0%, #ffffff 100%);
+        }
+        .hero-grid {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+        .hero-text {
+            flex: 1;
+        }
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            background: linear-gradient(145deg, #154254, #228b78);
+            -webkit-background-clip: text;
+background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #2e5a6b;
+            margin-bottom: 28px;
+            max-width: 550px;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 20px;
+        }
+        .stat span {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: #1b7f6e;
+        }
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+        .hero-image i {
+            font-size: 14rem;
+            color: #83c5b4;
+            filter: drop-shadow(0 12px 18px rgba(0,0,0,0.08));
+        }
+
+        section {
+            padding: 70px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1e3b48;
+        }
+        .section-sub {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 48px auto;
+            color: #4a6f7e;
+            font-size: 1.1rem;
+        }
+
+        /* cards with device images */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 32px;
+        }
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 28px 24px;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.04);
+            transition: all 0.25s ease;
+            border: 1px solid #e2edf0;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px rgba(27,127,110,0.2);
+            border-color: #bdd9d0;
+        }
+        .device-img {
+            text-align: center;
+            margin-bottom: 20px;
+            background: #f0f6f9;
+            border-radius: 40px;
+            padding: 16px 8px;
+        }
+        .device-img svg {
+            max-width: 140px;
+            height: auto;
+            filter: drop-shadow(2px 6px 12px rgba(0,0,0,0.08));
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        .card p {
+            color: #3c6474;
+            margin-bottom: 18px;
+            line-height: 1.45;
+            flex: 1;
+        }
+        .tip-badge {
+            background: #eef2f5;
+            border-radius: 30px;
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1b7f6e;
+            display: inline-block;
+            align-self: flex-start;
+        }
+
+        .benefits-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+            background: #ffffffdd;
+            border-radius: 48px;
+            padding: 20px;
+        }
+        .benefit-item {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 28px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            border: 1px solid #e5f0ef;
+        }
+        .benefit-item i {
+            font-size: 2.4rem;
+            color: #1b7f6e;
+            margin-bottom: 16px;
+        }
+
+        .faq-grid {
+            max-width: 880px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: white;
+            margin-bottom: 16px;
+            border-radius: 24px;
+            border: 1px solid #e2edf0;
+            overflow: hidden;
+        }
+        .faq-question {
+            padding: 20px 28px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            background: white;
+            transition: 0.1s;
+}
+        .faq-question i {
+            color: #1b7f6e;
+            transition: 0.2s;
+        }
+        .faq-answer {
+            padding: 0 28px 20px 28px;
+            color: #3d6c7e;
+            border-top: 1px solid #e9f0f2;
+            display: none;
+            line-height: 1.5;
+        }
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .guide-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .guide-item {
+            background: white;
+            border-radius: 20px;
+            padding: 20px 28px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            border-left: 6px solid #1b7f6e;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        .guide-icon {
+            font-size: 2rem;
+            width: 60px;
+            text-align: center;
+        }
+        .guide-text h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .guide-text p {
+            color: #4d6f7e;
+        }
+
+        footer {
+            background: #0a2a32;
+            color: #cddfe4;
+            padding: 48px 0 32px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        .footer-logo i {
+            color: #6fbfae;
+            margin-right: 8px;
+        }
+        .footer-tagline {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+        hr {
+            border-color: #2a5b68;
+            max-width: 300px;
+            margin: 24px auto;
+        }
+        .copyright {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin: 24px 0 16px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: #bbdfe8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+        .footer-links a:hover {
+            color: white;
+        }
+
+        @media (max-width: 750px) {
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            .nav-flex {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .hero-image i {
+                font-size: 8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container nav-flex">
+        <div class="logo">
+            <i class="fas fa-microchip"></i> SmartNest
+        </div>
+        <div class="nav-links">
+            <a href="#benefits">Преимущества</a>
+            <a href="#solutions">Решения</a>
+            <a href="#guide">Гайд</a>
+            <a href="#faq">FAQ</a>
+        </div>
+        <a href="#" class="btn-primary" id="mainCtaBtn">Подобрать систему</a>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="container hero-grid">
+        <div class="hero-text">
+            <h1>Умный дом, который <br> заботится о вас</h1>
+            <p>Автоматизация, энергоэффективность, безопасность и полный контроль — откройте мир технологий, которые делают жизнь проще.</p>
+            <div class="hero-stats">
+                <div class="stat"><span>−35%</span><br> экономии энергии</div>
+                <div class="stat"><span>24/7</span><br> мониторинг</div>
+<div class="stat"><span>100+</span><br> совместимых устройств</div>
+            </div>
+            <div style="margin-top: 30px;">
+                <a href="#solutions" class="btn-primary" style="margin-right: 16px;">Изучить решения</a>
+                <a href="#guide" class="btn-outline">Бесплатный гайд</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <i class="fas fa-home"></i>
+        </div>
+    </div>
+</header>
+
+<section id="benefits">
+    <div class="container">
+        <h2 class="section-title">Ключевые преимущества</h2>
+        <p class="section-sub">Инвестируйте в комфорт и технологии будущего уже сегодня</p>
+        <div class="benefits-flex">
+            <div class="benefit-item"><i class="fas fa-shield-alt"></i><h4>Безопасность</h4><p>Датчики протечек, дыма, камеры с ИИ и контроль доступа.</p></div>
+            <div class="benefit-item"><i class="fas fa-charging-station"></i><h4>Энергоэффективность</h4><p>Автоматическое управление светом, отоплением до −30% счетов.</p></div>
+            <div class="benefit-item"><i class="fas fa-robot"></i><h4>Автоматизация</h4><p>Сценарии: «Доброе утро», «Ухожу», «Кино» — всё в один клик.</p></div>
+            <div class="benefit-item"><i class="fas fa-cloud-upload-alt"></i><h4>Удаленный контроль</h4><p>Управляйте домом из любой точки мира через приложение.</p></div>
+        </div>
+    </div>
+</section>
+
+<section id="solutions" style="background: #eef3f6;">
+    <div class="container">
+        <h2 class="section-title">Полезные сценарии умного дома</h2>
+        <p class="section-sub">Посмотрите, как выглядят устройства, которые сделают ваш дом технологичнее</p>
+        <div class="cards-grid">
+            <!-- Датчик протечки -->
+            <div class="card">
+                <div class="device-img">
+                    <svg width="120" height="100" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="35" y="30" width="50" height="40" rx="10" fill="#D9EAF2" stroke="#1b7f6e" stroke-width="1.5"/>
+                        <circle cx="60" cy="50" r="10" fill="#1b7f6e" stroke="#0F5F52" stroke-width="1.2"/>
+                        <rect x="50" y="62" width="20" height="8" rx="4" fill="#AAC7D2"/>
+                        <path d="M45 25 L75 25" stroke="#1b7f6e" stroke-width="2" stroke-dasharray="4 2"/>
+                        <path d="M40 78 L80 78" stroke="#6FA3B0" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="55" cy="78" r="3" fill="#2BA0D0"/>
+                        <circle cx="75" cy="78" r="3" fill="#2BA0D0"/>
+                        <text x="55" y="94" font-size="8" fill="#1b7f6e" font-weight="bold">💧 датчик</text>
+                    </svg>
+                </div>
+                <h3>Защита от протечек</h3>
+                <p>Датчики воды моментально перекрывают подачу при аварии. Предотвращение потопа и ремонта — экономия до 150 000 ₽.</p>
+                <span class="tip-badge"><i class="fas fa-lightbulb"></i> Совет: разместите под раковиной и стиральной машиной</span>
+            </div>
+            <!-- Термостат -->
+            <div class="card">
+                <div class="device-img">
+                    <svg width="120" height="100" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="60" cy="45" r="28" fill="#EAF2F5" stroke="#1b7f6e" stroke-width="1.6"/>
+                        <circle cx="60" cy="45" r="20" fill="white" stroke="#BDD9D0" stroke-width="1"/>
+                        <text x="53" y="52" font-size="18" fill="#1b7f6e" font-weight="bold">21°</text>
+                        <path d="M60 25 L60 30" stroke="#1b7f6e" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M60 60 L60 65" stroke="#1b7f6e" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M40 45 L45 45" stroke="#1b7f6e" stroke-width="2" stroke-linecap="round"/>
+<path d="M75 45 L80 45" stroke="#1b7f6e" stroke-width="2" stroke-linecap="round"/>
+                        <rect x="50" y="72" width="20" height="12" rx="4" fill="#CDE5E0"/>
+                        <text x="44" y="92" font-size="8" fill="#1b7f6e">Wi-Fi термостат</text>
+                    </svg>
+                </div>
+                <h3>Умный климат</h3>
+                <p>Термостаты обучаются вашему графику. Поддерживают идеальную температуру, экономя до 25% энергии.</p>
+                <span class="tip-badge"><i class="fas fa-chart-line"></i> Зимой снижайте нагрев на время отсутствия</span>
+            </div>
+            <!-- Камера видеонаблюдения с ИИ -->
+            <div class="card">
+                <div class="device-img">
+                    <svg width="120" height="100" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="40" y="30" width="40" height="35" rx="8" fill="#1e3b48" stroke="#1b7f6e" stroke-width="1.5"/>
+                        <circle cx="60" cy="47" r="10" fill="#2C5F6E" stroke="#AAD4DF" stroke-width="1.2"/>
+                        <circle cx="58" cy="45" r="3" fill="#C4E6F0"/>
+                        <path d="M35 30 L28 22 L40 22 L35 30Z" fill="#1b7f6e"/>
+                        <rect x="48" y="68" width="24" height="8" rx="2" fill="#AAC7D2"/>
+                        <path d="M60 68 L60 76" stroke="#1b7f6e" stroke-width="2"/>
+                        <text x="44" y="92" font-size="7" fill="#1b7f6e">AI камера</text>
+                        <circle cx="95" cy="38" r="8" fill="#1b7f6e" opacity="0.3"/>
+                        <path d="M95 38 L105 33" stroke="#1b7f6e" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <h3>Видеонаблюдение с ИИ</h3>
+                <p>Камеры распознают лица, животных и подозрительную активность. Мгновенные уведомления на смартфон.</p>
+                <span class="tip-badge"><i class="fas fa-mobile-alt"></i> Выбирайте модели с ночным режимом</span>
+            </div>
+            <!-- Умная розетка и свет -->
+            <div class="card">
+                <div class="device-img">
+                    <svg width="120" height="100" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="45" y="40" width="30" height="28" rx="6" fill="#F7F1E5" stroke="#1b7f6e" stroke-width="1.5"/>
+                        <rect x="52" y="48" width="16" height="12" rx="2" fill="#E6C9A0"/>
+                        <circle cx="60" cy="54" r="2" fill="#1b7f6e"/>
+                        <path d="M60 40 L60 30" stroke="#1b7f6e" stroke-width="2"/>
+                        <path d="M50 30 L70 30" stroke="#F5BD42" stroke-width="3"/>
+                        <circle cx="60" cy="30" r="5" fill="#FFD966"/>
+                        <text x="46" y="86" font-size="7" fill="#1b7f6e">умная розетка</text>
+                        <text x="66" y="86" font-size="7" fill="#1b7f6e">+ свет</text>
+                    </svg>
+                </div>
+                <h3>Умные розетки и свет</h3>
+                <p>Управляйте приборами удаленно. Создавайте расписания для освещения — имитация присутствия для защиты от взлома.</p>
+                <span class="tip-badge"><i class="fas fa-clock"></i> Запрограммируйте свет на случай отпуска</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="guide">
+    <div class="container">
+        <h2 class="section-title">📘 Полезный гайд: как начать умный дом с нуля</h2>
+        <p class="section-sub">Пошаговая стратегия от выбора платформы до готовых сценариев</p>
+        <div class="guide-list">
+            <div class="guide-item"><div class="guide-icon"><i class="fas fa-search"></i></div><div class="guide-text"><h4>Шаг 1. Выберите экосистему</h4><p>Яндекс.Станция, Apple HomeKit, Google Home, Aqara, или открытый стандарт Matter — определитесь с голосовым помощником и совместимостью.</p></div></div>
+<div class="guide-item"><div class="guide-icon"><i class="fas fa-hub"></i></div><div class="guide-text"><h4>Шаг 2. Центральный хаб</h4><p>Для стабильной работы приобретите умный хаб (например, Hubitat, Raspberry Pi Home Assistant или готовые шлюзы Zigbee).</p></div></div>
+            <div class="guide-item"><div class="guide-icon"><i class="fas fa-microchip"></i></div><div class="guide-text"><h4>Шаг 3. Стартовый набор</h4><p>Начните с умных лампочек, датчика открытия двери и термостата. Это простые устройства с максимальной пользой.</p></div></div>
+            <div class="guide-item"><div class="guide-icon"><i class="fas fa-chalkboard-teacher"></i></div><div class="guide-text"><h4>Шаг 4. Сценарии автоматизации</h4><p>«Ухожу»: выключает весь свет, закрывает шторы, активирует охрану. «Ночь»: приглушает свет, блокирует двери, устанавливает комфортную температуру.</p></div></div>
+            <div class="guide-item"><div class="guide-icon"><i class="fas fa-shield-alt"></i></div><div class="guide-text"><h4>Важно! Безопасность сети</h4><p>Используйте отдельную гостевую Wi-Fi сеть для IoT-устройств, регулярно обновляйте прошивки и ставьте сложные пароли.</p></div></div>
+        </div>
+    </div>
+</section>
+
+<section id="faq" style="background: #f8fafc;">
+    <div class="container">
+        <h2 class="section-title">Часто задаваемые вопросы</h2>
+        <p class="section-sub">Отвечаем на популярные вопросы об умных домах</p>
+        <div class="faq-grid">
+            <div class="faq-item"><div class="faq-question">Сложно ли устанавливать умный дом самостоятельно? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Большинство современных систем работают по беспроводным протоколам (Zigbee, Wi-Fi). Установка не требует прокладки кабелей — достаточно заменить розетки, лампочки и добавить датчики. Интуитивные приложения делают настройку доступной даже новичкам.</div></div>
+            <div class="faq-item"><div class="faq-question">Что происходит при отключении интернета? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Локальная автоматизация продолжает работать: сценарии (например, по датчику движения) выполняются через хаб. Удаленное управление временно недоступно, но основные функции сохраняются.</div></div>
+            <div class="faq-item"><div class="faq-question">Сколько стоит оборудование для старта? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Базовый комплект: хаб + 2 лампы + датчик движения + умная розетка обойдется от 12 000 до 25 000 ₽ в зависимости от бренда. Постепенно вы можете расширять систему без лишних затрат.</div></div>
+            <div class="faq-item"><div class="faq-question">Совместимы ли устройства разных брендов? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Да, благодаря новому стандарту Matter и протоколам Zigbee 3.0. Многие современные устройства работают в единой экосистеме через совместимые хабы.</div></div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-microchip"></i> SmartNest</div>
+            <div class="footer-tagline">Технологии для комфортной, безопасной и экологичной жизни.<br>Информационный ресурс об умном доме и современных системах автоматизации.</div>
+            <div class="footer-links"><a href="#benefits">Преимущества</a><a href="#solutions">Сценарии</a><a href="#guide">Гайд</a><a href="#faq">Вопросы</a></div>
+            <hr><div class="copyright">© 2026 SmartNest — Все материалы носят информационный характер. Умные технологии меняют жизнь к лучшему.</div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const q = item.querySelector('.faq-question');
+        q.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+faqItems.forEach(i => i.classList.remove('active'));
+            if (!isActive) item.classList.add('active');
+        });
+    });
+    if(faqItems.length) faqItems[0].classList.add('active');
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if(href === "#" || href === "") return;
+            const target = document.querySelector(href);
+            if(target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        });
+    });
+    document.getElementById('mainCtaBtn')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('📘 Изучите наш гайд и раздел со сценариями — там уже есть все ответы для старта!');
+    });
+</script>
+</body>
+</html>
